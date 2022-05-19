@@ -1,17 +1,24 @@
 package com.application.pichuser.controller;
 
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import com.application.pichuser.exception.MensajeError;
 import com.application.pichuser.exception.MensajeOk;
 import com.application.pichuser.model.AccountModel;
 import com.application.pichuser.model.TransactionModel;
+import com.application.pichuser.report.PDFGenerator;
 import com.application.pichuser.service.dto.TransactionDTO;
 import com.application.pichuser.service.impl.AccountServiceImpl;
 import com.application.pichuser.service.impl.TransactionServiceImpl;
-
+import org.springframework.http.MediaType;
+import org.springframework.http.HttpHeaders;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,11 +72,34 @@ public class TransactionController {
     @GetMapping(value = "listar")
     public ResponseEntity<?> listarMovimientosDateCliente(@RequestBody Map<String, String> data) {
         try {
-            return new ResponseEntity<>(transactionSrv.listarMovimientosDateCliente(
-                    (Date) new SimpleDateFormat("yyyy-MM-dd").parse(data.get("fechaInicio")),
-                    (Date) new SimpleDateFormat("yyyy-MM-dd").parse(data.get("fechaFin")), data.get("cliente")), HttpStatus.OK);
+            List<Map<String, String>> reporte = transactionSrv.listarMovimientosDateCliente(
+                (Date) new SimpleDateFormat("yyyy-MM-dd").parse(data.get("fechaInicio")),
+                (Date) new SimpleDateFormat("yyyy-MM-dd").parse(data.get("fechaFin")),
+                data.get("cliente"));
+
+            return new ResponseEntity<>(reporte, HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(new MensajeError("CREATE", e.getMessage()), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @RequestMapping(path = "reportes", produces = MediaType.APPLICATION_PDF_VALUE)
+    public ResponseEntity<InputStreamResource> customerReport(@RequestBody Map<String, String> data) throws IOException, ParseException {
+        
+        List<Map<String, String>> reporte = transactionSrv.listarMovimientosDateCliente(
+                (Date) new SimpleDateFormat("yyyy-MM-dd").parse(data.get("fechaInicio")),
+                (Date) new SimpleDateFormat("yyyy-MM-dd").parse(data.get("fechaFin")),
+                data.get("cliente"));
+
+        ByteArrayInputStream bis = PDFGenerator.customerPDFReport(reporte);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=report.pdf");
+
+        return ResponseEntity
+                .ok()
+                .headers(headers)
+                .contentType(MediaType.APPLICATION_PDF)
+                .body(new InputStreamResource(bis));
     }
 }

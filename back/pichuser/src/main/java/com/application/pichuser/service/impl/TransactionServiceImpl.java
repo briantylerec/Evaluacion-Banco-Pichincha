@@ -1,5 +1,6 @@
 package com.application.pichuser.service.impl;
 
+import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -21,7 +22,6 @@ import lombok.extern.slf4j.Slf4j;
 public class TransactionServiceImpl implements TransactionService {
 
     private final TransactionRepository transactionRepo;
-    private final CustomerServiceImpl customerSrv;
 
     public TransactionModel obtenerMovimientos(String transactionId){
         log.info("Getting transaction:" + transactionId);

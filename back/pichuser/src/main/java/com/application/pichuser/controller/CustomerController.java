@@ -34,22 +34,21 @@ public class CustomerController {
     @PostMapping("/crear")
     public ResponseEntity<?> crearCliente(@RequestBody CustomerModel customer){
         
-        try{
-            if(customerSrv.obtenerCliente(customer.getPersonaId().getIdPersona())==null){
+        try{            
+            if(customerSrv.obtenerCliente(customer.getPersonaId().getIdPersona()) == null){
                 PersonModel person = customer.getPersonaId();
                 customer.setIdCliente(person.getIdPersona());
 
                 personSrv.crearPersona(person);
-                customerSrv.crearCliente(customer);
-                
-                return new ResponseEntity<>(customer, HttpStatus.CREATED);
+
+                return new ResponseEntity<>(customerSrv.crearCliente(customer), HttpStatus.CREATED);
             }
             
             return ResponseEntity.ok(new MensajeOk("Msg","Usuario ya existe!"));
 
         }
         catch (Exception e){
-            return new ResponseEntity<>(new MensajeError("CREATE", e.getMessage()), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(new MensajeError("CREATE", e.getLocalizedMessage()), HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -72,9 +71,9 @@ public class CustomerController {
                 customer.setIdCliente(person.getIdPersona());
 
                 personSrv.crearPersona(person);
-                customerSrv.crearCliente(customer);
                 
-                return new ResponseEntity<>(customer, HttpStatus.OK);
+                
+                return new ResponseEntity<>(customerSrv.crearCliente(customer), HttpStatus.OK);
             }
             
             return ResponseEntity.ok(new MensajeOk("Msg","Usuario no existe!"));

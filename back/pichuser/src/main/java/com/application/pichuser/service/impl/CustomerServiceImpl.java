@@ -25,7 +25,7 @@ public class CustomerServiceImpl implements CustomerService {
         try{
             return customerRepo.findById(customerId).get();
             
-        } catch(IllegalArgumentException e){
+        } catch(Exception e){
             log.error(e.getMessage());
             return null;
         }
