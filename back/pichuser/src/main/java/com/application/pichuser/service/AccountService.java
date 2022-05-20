@@ -3,8 +3,6 @@ package com.application.pichuser.service;
 import java.util.List;
 
 import com.application.pichuser.model.AccountModel;
-import com.application.pichuser.model.CustomerModel;
-import com.application.pichuser.model.PersonModel;
 
 public interface AccountService {
 
