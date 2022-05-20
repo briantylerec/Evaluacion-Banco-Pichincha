@@ -6,8 +6,9 @@ import com.application.pichuser.exception.MensajeError;
 import com.application.pichuser.exception.MensajeOk;
 import com.application.pichuser.model.CustomerModel;
 import com.application.pichuser.model.PersonModel;
+import com.application.pichuser.service.CustomerService;
+import com.application.pichuser.service.PersonService;
 import com.application.pichuser.service.impl.CustomerServiceImpl;
-import com.application.pichuser.service.impl.PersonServiceImpl;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,8 +28,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/clientes")
 public class CustomerController {
 
-    private final CustomerServiceImpl customerSrv;
-    private final PersonServiceImpl personSrv;
+    private final CustomerService customerSrv;
+    private final PersonService personSrv;
 
     @PostMapping("/crear")
     public ResponseEntity<?> crearCliente(@RequestBody CustomerModel customer){

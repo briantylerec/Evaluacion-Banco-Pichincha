@@ -19,6 +19,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final CustomerRepository customerRepo;
 
+    @Override
     public CustomerModel obtenerCliente(String customerId) {
         log.info("Getting customer by id " + customerId);
 
@@ -31,16 +32,19 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    @Override
     public CustomerModel crearCliente(CustomerModel customer){
         log.info("Creating customer: " + customer);
         return customerRepo.save(customer);
     }
 
+    @Override
     public CustomerModel actualizarCliente(CustomerModel customer){
         log.info("Updating customer: " + customer);
         return customerRepo.save(customer);
     }
 
+    @Override
     public boolean eliminarCliente(String customerId) {
         log.info("Deleting by id " + customerId);
 
@@ -52,16 +56,19 @@ public class CustomerServiceImpl implements CustomerService {
         }
     }
 
+    @Override
     public boolean clienteExiste(String customerId) {
 
         return obtenerCliente(customerId)==null;
     }
 
+    @Override
     public List<CustomerModel> listarClientes(){
         log.info("Listing customer ");
         return customerRepo.findAll();
     }
 
+    @Override
     public CustomerModel obtenerClienteByPersona(PersonModel persona){
         List<CustomerModel> clientes = listarClientes();
         CustomerModel customer;

@@ -21,8 +21,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TransactionServiceImpl implements TransactionService {
 
-    private final TransactionRepository transactionRepo;
+    private final TransactionRepository transactionRepo = null;
 
+    @Override
     public TransactionModel obtenerMovimientos(String transactionId){
         log.info("Getting transaction:" + transactionId);
         try{
@@ -33,16 +34,19 @@ public class TransactionServiceImpl implements TransactionService {
         }
     }
 
+    @Override
     public TransactionModel crearMovimientos(TransactionModel transaction){
         log.info("Creating transaction:" + transaction);
         return transactionRepo.save(transaction);
     }
 
+    @Override
     public TransactionModel actualizarMovimientos(TransactionModel transaction){
         log.info("Updating transaction:" + transaction);
         return transactionRepo.save(transaction);
     }
 
+    @Override
     public boolean eliminarMovimientos(TransactionModel transaction){
         log.info("Deleting transaction:" + transaction);
         try{
@@ -54,11 +58,13 @@ public class TransactionServiceImpl implements TransactionService {
         }
     }
 
+    @Override
     public List<TransactionModel> listarMovimientos(){
         log.info("Listing transaction:");
         return transactionRepo.findAll();
     }
 
+    @Override
     public List<TransactionModel> listarMovimientosCliente(String customer){
         log.info("Listing transactions by customer:" + customer);
         List<TransactionModel> lista = new ArrayList<TransactionModel>();
@@ -71,6 +77,7 @@ public class TransactionServiceImpl implements TransactionService {
         return lista;
     }
 
+    @Override
     public List<Map<String, String>> listarMovimientosDateCliente(Date initDate, Date finalDate, String customerId){
         log.info("Listing transactions btween "+initDate+" and "+finalDate+" by customer id: " + customerId);
 

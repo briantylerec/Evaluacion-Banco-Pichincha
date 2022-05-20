@@ -6,9 +6,9 @@ import com.application.pichuser.exception.MensajeError;
 import com.application.pichuser.exception.MensajeOk;
 import com.application.pichuser.model.CustomerModel;
 import com.application.pichuser.model.AccountModel;
+import com.application.pichuser.service.AccountService;
+import com.application.pichuser.service.CustomerService;
 import com.application.pichuser.service.dto.AccountDTO;
-import com.application.pichuser.service.impl.AccountServiceImpl;
-import com.application.pichuser.service.impl.CustomerServiceImpl;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -28,8 +28,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/cuentas")
 public class AccountController {
 
-    private final AccountServiceImpl accountSrv;
-    private final CustomerServiceImpl customerSrv;
+    private final AccountService accountSrv;
+    private final CustomerService customerSrv;
 
     @PostMapping("crear")
     public ResponseEntity<?> crearCuenta(@RequestBody AccountDTO accountDTO){

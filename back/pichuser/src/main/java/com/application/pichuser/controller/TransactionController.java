@@ -13,6 +13,8 @@ import com.application.pichuser.exception.MensajeOk;
 import com.application.pichuser.model.AccountModel;
 import com.application.pichuser.model.TransactionModel;
 import com.application.pichuser.report.PDFGenerator;
+import com.application.pichuser.service.AccountService;
+import com.application.pichuser.service.TransactionService;
 import com.application.pichuser.service.dto.TransactionDTO;
 import com.application.pichuser.service.impl.AccountServiceImpl;
 import com.application.pichuser.service.impl.TransactionServiceImpl;
@@ -35,8 +37,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequestMapping("movimientos")
 public class TransactionController {
 
-    private final TransactionServiceImpl transactionSrv;
-    private final AccountServiceImpl accountSrv;
+    private final TransactionService transactionSrv;
+    private final AccountService accountSrv;
 
     @PostMapping("crear")
     public ResponseEntity<?> crearMovimiento(@RequestBody TransactionDTO transactionDTO) {

@@ -16,21 +16,25 @@ public class PersonServiceImpl implements PersonService{
 
     private final PersonRepository personRepo;
 
+    @Override
     public PersonModel obtenerPersona(String personId) {
         log.info("Getting person by id " + personId);
         return personRepo.findById(personId).get();
     }
 
+    @Override
     public PersonModel crearPersona(PersonModel person){
         log.info("Creating person:" + person);
         return personRepo.save(person);
     }
 
+    @Override
     public PersonModel actualizarPersona(PersonModel person){
         log.info("Updatingperson:" + person);
         return personRepo.save(person);
     }
 
+    @Override
     public boolean eliminarPersona(PersonModel person) {
         log.info("Deleting person:" + person);
 
