@@ -7,6 +7,7 @@ import com.application.pichuser.model.AccountModel;
 import com.application.pichuser.repository.AccountRepository;
 import com.application.pichuser.service.AccountService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AccountServiceImpl implements AccountService {
 
-    private final AccountRepository accountRepo;
+    @Autowired
+    private AccountRepository accountRepo;
 
     @Override
     public AccountModel obtenerCuenta(String accountId){

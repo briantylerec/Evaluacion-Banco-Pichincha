@@ -9,6 +9,7 @@ import com.application.pichuser.model.PersonModel;
 import com.application.pichuser.service.CustomerService;
 import com.application.pichuser.service.PersonService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,8 +29,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 @RequestMapping("/clientes")
 public class CustomerController {
 
-    private final CustomerService customerSrv;
-    private final PersonService personSrv;
+    @Autowired
+    private CustomerService customerSrv;
+    @Autowired
+    private PersonService personSrv;
 
     @PostMapping("/crear")
     public ResponseEntity<?> crearCliente(@RequestBody CustomerModel customer){

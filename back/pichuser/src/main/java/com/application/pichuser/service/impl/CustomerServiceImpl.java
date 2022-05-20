@@ -7,6 +7,7 @@ import com.application.pichuser.model.PersonModel;
 import com.application.pichuser.repository.CustomerRepository;
 import com.application.pichuser.service.CustomerService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -17,7 +18,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class CustomerServiceImpl implements CustomerService {
 
-    private final CustomerRepository customerRepo;
+    @Autowired
+    private CustomerRepository customerRepo;
 
     @Override
     public CustomerModel obtenerCliente(String customerId) {

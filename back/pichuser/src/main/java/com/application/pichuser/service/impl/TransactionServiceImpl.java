@@ -11,6 +11,7 @@ import com.application.pichuser.model.TransactionModel;
 import com.application.pichuser.repository.TransactionRepository;
 import com.application.pichuser.service.TransactionService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -21,7 +22,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class TransactionServiceImpl implements TransactionService {
 
-    private final TransactionRepository transactionRepo = null;
+    @Autowired
+    private  TransactionRepository transactionRepo;
 
     @Override
     public TransactionModel obtenerMovimientos(String transactionId){

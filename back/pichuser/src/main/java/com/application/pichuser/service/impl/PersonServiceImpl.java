@@ -4,6 +4,7 @@ import com.application.pichuser.model.PersonModel;
 import com.application.pichuser.repository.PersonRepository;
 import com.application.pichuser.service.PersonService;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -14,7 +15,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class PersonServiceImpl implements PersonService{
 
-    private final PersonRepository personRepo;
+    @Autowired
+    private PersonRepository personRepo;
 
     @Override
     public PersonModel obtenerPersona(String personId) {

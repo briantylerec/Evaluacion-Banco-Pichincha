@@ -1,4 +1,4 @@
-package com.application.pichuser.controllers;
+package com.application.pichuser.controller;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

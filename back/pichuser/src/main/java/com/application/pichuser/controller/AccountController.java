@@ -10,6 +10,7 @@ import com.application.pichuser.service.AccountService;
 import com.application.pichuser.service.CustomerService;
 import com.application.pichuser.service.dto.AccountDTO;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -28,8 +29,10 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/cuentas")
 public class AccountController {
 
-    private final AccountService accountSrv;
-    private final CustomerService customerSrv;
+    @Autowired
+    private AccountService accountSrv;
+    @Autowired
+    private CustomerService customerSrv;
 
     @PostMapping("crear")
     public ResponseEntity<?> crearCuenta(@RequestBody AccountDTO accountDTO){

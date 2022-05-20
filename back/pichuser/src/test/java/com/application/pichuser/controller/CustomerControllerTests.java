@@ -1,23 +1,19 @@
-package com.application.pichuser.controllers;
+package com.application.pichuser.controller;
 
 import static org.mockito.Mockito.when;
 
-import com.application.pichuser.controller.CustomerController;
 import com.application.pichuser.model.CustomerModel;
 import com.application.pichuser.model.PersonModel;
-import com.application.pichuser.service.impl.CustomerServiceImpl;
+import com.application.pichuser.service.CustomerService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
 public class CustomerControllerTests {
-    @InjectMocks
-    CustomerController customerController;
 
     @Mock
-    CustomerServiceImpl customerSrv;
+    CustomerService customerSrv;
 
     private CustomerModel customer;
     private PersonModel person;
