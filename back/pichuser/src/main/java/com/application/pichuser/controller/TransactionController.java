@@ -53,7 +53,7 @@ public class TransactionController {
                 return ResponseEntity.ok(new MensajeOk("Msg", "Saldo no disponible"));
             } else {
                 float saldo = getSaldo(saldoActual, transactionDTO);
-                account.setSaldoInicia(saldo);
+                account.setSaldoInicial(saldo);
 
                 TransactionModel transaction = new TransactionModel(new Date(), transactionDTO.getTipoMovimiento(),
                         transactionDTO.getValor(), saldo, account);

@@ -12,8 +12,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 @Entity
 @Table(name = "movimientos")
+@Getter
+@Setter
 public class TransactionModel implements Serializable {
 
     @Id
@@ -34,9 +40,6 @@ public class TransactionModel implements Serializable {
     @JoinColumn(name = "cuenta_id", referencedColumnName = "id_cuenta")
     private AccountModel cuentaId;
 
-    public TransactionModel() {
-    }
-
     public TransactionModel(Date fecha, String tipoMovimiento, float valor, float saldo, AccountModel cuentaId) {
         this.fecha = fecha;
         this.tipoMovimiento = tipoMovimiento;
@@ -44,52 +47,4 @@ public class TransactionModel implements Serializable {
         this.saldo = saldo;
         this.cuentaId = cuentaId;
     }
-
-    public AccountModel getCuentaId() {
-        return this.cuentaId;
-    }
-
-    public void setCuentaId(AccountModel cuentaId) {
-        this.cuentaId = cuentaId;
-    }
-
-    public Long getIdMovimiento() {
-        return this.idMovimiento;
-    }
-
-    public void setIdMovimiento(Long idMovimiento) {
-        this.idMovimiento = idMovimiento;
-    } 
-
-    public Date getFecha() {
-        return this.fecha;
-    }
-
-    public void setFecha(Date fecha) {
-        this.fecha = fecha;
-    }
-
-    public String getTipoMovimiento() {
-        return this.tipoMovimiento;
-    }
-
-    public void setTipoMovimiento(String tipoMovimiento) {
-        this.tipoMovimiento = tipoMovimiento;
-    }
-
-    public float getValor() {
-        return this.valor;
-    }
-
-    public void setValor(float valor) {
-        this.valor = valor;
-    }
-
-    public float getSaldo() {
-        return this.saldo;
-    }
-
-    public void setSaldo(float saldo) {
-        this.saldo = saldo;
-    }   
 }

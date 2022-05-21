@@ -42,7 +42,7 @@ public class AccountController {
 
                 CustomerModel customer = customerSrv.obtenerCliente(accountDTO.getClienteId());
 
-                AccountModel account = new AccountModel(accountDTO.getIdCuenta(), accountDTO.getTipoCuenta(), accountDTO.getSaldoInicial(), accountDTO.getEstado(), customer);
+                AccountModel account = new AccountModel(accountDTO.getIdCuenta(), accountDTO.getTipoCuenta(), accountDTO.getSaldoInicial(), accountDTO.isEstado(), customer);
 
                 return new ResponseEntity<>(accountSrv.crearCuenta(account), HttpStatus.CREATED);
             }
@@ -58,7 +58,7 @@ public class AccountController {
         try{
             if(accountSrv.obtenerCuenta(accountDTO.getIdCuenta())!=null){
                 CustomerModel customer = customerSrv.obtenerCliente(accountDTO.getClienteId());
-                AccountModel account = new AccountModel(accountDTO.getIdCuenta(), accountDTO.getTipoCuenta(), accountDTO.getSaldoInicial(), accountDTO.getEstado(), customer);
+                AccountModel account = new AccountModel(accountDTO.getIdCuenta(), accountDTO.getTipoCuenta(), accountDTO.getSaldoInicial(), accountDTO.isEstado(), customer);
                 return new ResponseEntity<>(accountSrv.crearCuenta(account), HttpStatus.CREATED);
             } else {
                 return ResponseEntity.ok(new MensajeOk("Msg","Cuenta no existe."));

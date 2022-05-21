@@ -95,7 +95,7 @@ public class TransactionServiceImpl implements TransactionService {
                 mapa.put("Numero Cuenta", m.getCuentaId().getIdCuenta());
                 mapa.put("Tipo", m.getTipoMovimiento());
                 mapa.put("Saldo Inicial", String.valueOf(m.getSaldo()));
-                mapa.put("Estado", m.getCuentaId().getEstado()==true?"true":"false");
+                mapa.put("Estado", m.getCuentaId().isEstado()==true?"true":"false");
                 mapa.put("Movimiento", m.getTipoMovimiento().equals("credito")?"+"+String.valueOf(m.getValor()):"-"+String.valueOf(m.getValor()));
                 mapa.put("Saldo Disponible", String.valueOf(m.getCuentaId().getSaldoInicial()));
 

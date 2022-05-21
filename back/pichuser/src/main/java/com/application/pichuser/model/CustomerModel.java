@@ -9,8 +9,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 @Entity
 @Table(name = "cliente")
+@Data
+@AllArgsConstructor
 public class CustomerModel implements Serializable {
     
     @Id
@@ -26,50 +31,4 @@ public class CustomerModel implements Serializable {
     @OneToOne
     @JoinColumn(name = "persona_id", referencedColumnName = "id_persona")
     private PersonModel personaId;
-
-    public CustomerModel() {
-    }
-
-    public CustomerModel(String idCliente, String contrasena, boolean estado, PersonModel personaId) {
-        this.idCliente = idCliente;
-        this.contrasena = contrasena;
-        this.estado = estado;
-        this.personaId = personaId;
-    }
-
-    public String getIdCliente() {
-        return this.idCliente;
-    }
-
-    public void setIdCliente(String idCliente) {
-        this.idCliente = idCliente;
-    }
-
-    public PersonModel getPersonaId() {
-        return this.personaId;
-    }
-
-    public void setPersonaId(PersonModel personaId) {
-        this.personaId = personaId;
-    }   
-
-    public String getContrasena() {
-        return this.contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-    public boolean isEstado() {
-        return this.estado;
-    }
-
-    public boolean getEstado() {
-        return this.estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
 }

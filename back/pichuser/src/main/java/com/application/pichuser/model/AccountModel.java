@@ -9,8 +9,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
 @Entity
 @Table(name = "cuenta")
+@Data
+@AllArgsConstructor
 public class AccountModel implements Serializable {
 
     @Id
@@ -27,59 +32,4 @@ public class AccountModel implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id_cliente")
     private CustomerModel clienteId;
-
-    public AccountModel() {
-    }
-
-    public AccountModel(String idCuenta, String tipoCuenta, float saldoInicial, boolean estado, CustomerModel clienteId) {
-        this.idCuenta = idCuenta;
-        this.tipoCuenta = tipoCuenta;
-        this.saldoInicial = saldoInicial;
-        this.estado = estado;
-        this.clienteId = clienteId;
-    }
-
-    public CustomerModel getClienteId() {
-        return this.clienteId;
-    }
-
-    public void setClienteId(CustomerModel clienteId) {
-        this.clienteId = clienteId;
-    }    
-
-    public String getIdCuenta() {
-        return this.idCuenta;
-    }
-
-    public void setIdCuenta(String idCuenta) {
-        this.idCuenta = idCuenta;
-    }
-
-    public String getTipoCuenta() {
-        return this.tipoCuenta;
-    }
-
-    public void setTipoCuenta(String tipoCuenta) {
-        this.tipoCuenta = tipoCuenta;
-    }
-
-    public float getSaldoInicial() {
-        return this.saldoInicial;
-    }
-
-    public void setSaldoInicia(float saldoInicial) {
-        this.saldoInicial = saldoInicial;
-    }
-
-    public boolean isEstado() {
-        return this.estado;
-    }
-
-    public boolean getEstado() {
-        return this.estado;
-    }
-
-    public void setEstado(boolean estado) {
-        this.estado = estado;
-    }
 }
