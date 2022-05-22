@@ -109,11 +109,9 @@
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
-				<version>${jib-maven-plugin.version}</version>
-				<configuration>
-					<container>
+				<configuration>				<container>
 						<ports>
-							<port>808</port>
+							<port>8080</port>
 						</ports>
 					</container>
 					<from>

@@ -8,14 +8,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "cuenta")
-@Data
-@AllArgsConstructor
+@Getter
+@Setter
 public class AccountModel implements Serializable {
 
     @Id
@@ -32,4 +31,16 @@ public class AccountModel implements Serializable {
     @ManyToOne
     @JoinColumn(name = "cliente_id", referencedColumnName = "id_cliente")
     private CustomerModel clienteId;
+
+    public AccountModel() {
+    }
+
+    public AccountModel(String idCuenta, String tipoCuenta, float saldoInicial, boolean estado, CustomerModel clienteId) {
+        this.idCuenta = idCuenta;
+        this.tipoCuenta = tipoCuenta;
+        this.saldoInicial = saldoInicial;
+        this.estado = estado;
+        this.clienteId = clienteId;
+    }
+
 }

@@ -10,9 +10,9 @@ import java.util.Map;
 
 import com.application.pichuser.exception.MensajeError;
 import com.application.pichuser.exception.MensajeOk;
+import com.application.pichuser.helper.PDFGenerator;
 import com.application.pichuser.model.AccountModel;
 import com.application.pichuser.model.TransactionModel;
-import com.application.pichuser.report.PDFGenerator;
 import com.application.pichuser.service.AccountService;
 import com.application.pichuser.service.TransactionService;
 import com.application.pichuser.service.dto.TransactionDTO;
